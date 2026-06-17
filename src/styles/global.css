@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors — Daniela & Moe botanical blush system */
+  --color-blush-canvas: #fef1ec; /* page bg — never pure white */
+  --color-ink-navy: #11223f; /* ALL text — never #000 */
+  --color-coral-vermillion: #ff5734; /* ONLY warm accent / CTA */
+  --color-dusty-peach: #f6bba4; /* secondary surface */
+  --color-forest-ink: #193c35;
+  --color-olive-grove: #7e813c;
+  --color-mustard-bloom: #e5ba2b;
+  --color-ember-orange: #ec4f22;
+  --color-sage-mist: #c6d7d0;
+  --color-deep-indigo: #092a49;
+  --color-pure-white: #ffffff; /* cards ONLY, never CTA */
+
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Inter", sans-serif;
+
+  --radius-pill: 200px; /* only interactive shape */
+  --radius-sharp: 0px; /* cards/inputs */
+
+  --spacing-section: 80px;
+}
+
+:root {
+  /* Type scale: size / line-height / letter-spacing */
+  --fs-caption: 12px;
+  --lh-caption: 1.6;
+  --ls-caption: 2.4px;
+  --fs-body-sm: 16px;
+  --lh-body-sm: 2;
+  --fs-body: 20px;
+  --lh-body: 1.6;
+  --fs-subheading: 24px;
+  --lh-subheading: 1.4;
+  --fs-heading-sm: 28px;
+  --lh-heading-sm: 1.3;
+  --fs-heading: 36px;
+  --lh-heading: 1.4;
+  --fs-heading-lg: 48px;
+  --lh-heading-lg: 1.2;
+  --fs-display: 120px;
+  --lh-display: 0.85;
+  --ls-label: 0.2em;
+  --maxw-page: 1200px;
+  --maxw-content: 800px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-blush-canvas);
+  color: var(--color-ink-navy);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
