@@ -13,11 +13,15 @@ export const HeroNameDisplay = forwardRef<HTMLHeadingElement>(function HeroNameD
   return (
     <h1
       ref={ref}
-      className="font-display font-light leading-[0.85] text-center text-ink-navy"
-      style={{ fontSize: "clamp(48px, 14vw, 120px)" }}
+      className="flex flex-col items-center text-center font-display font-light leading-[0.9] text-pure-white"
+      style={{ fontSize: "clamp(34px, 10vw, 76px)" }}
     >
       <span className="whitespace-nowrap">{couple.bride}</span>
-      <span className="text-coral-vermillion font-thin mx-[0.1em]" aria-hidden>
+      <span
+        className="my-0.5 font-thin text-coral-vermillion"
+        style={{ fontSize: "0.82em", lineHeight: 1 }}
+        aria-hidden
+      >
         {couple.separator}
       </span>
       <span className="whitespace-nowrap">{couple.groom}</span>

@@ -1,45 +1,80 @@
-// Placeholder flat-vector botanical foliage that bleeds off the hero edges.
-// Artwork-palette only, NO shadows/gradients. Three depth groups drive parallax
-// via [data-depth] (read by use-parallax-layers). Decorative → aria-hidden.
-// Real illustration assets are a future art phase (plan Q3).
+// Mediterranean foliage that frames the arch like the watercolor intro:
+// magenta bougainvillea climbing from the top corners + terracotta pots at the
+// base. Flat color blocking only — NO shadows/gradients. Three depth groups
+// drive parallax via [data-depth] (read by use-parallax-layers). Decorative.
+
+/** A stylized bougainvillea cluster: three papery magenta bracts + a leaf. */
+function Sprig({ flip = false }: { flip?: boolean }) {
+  return (
+    <g transform={flip ? "scale(-1,1) translate(-120,0)" : undefined}>
+      <path d="M10 0 C40 14 64 36 78 72" stroke="#3f6b46" strokeWidth="2.5" fill="none" />
+      <path d="M30 14 C22 8 14 10 8 2 C18 4 26 8 34 8 Z" fill="#4f7a52" />
+      <path d="M52 30 C44 24 36 26 30 18 C40 20 48 24 56 24 Z" fill="#4f7a52" />
+      {/* bract clusters (groups of three) */}
+      <g fill="#cf3a6f">
+        <path d="M40 26 l8 -5 l3 9 Z" />
+        <path d="M48 24 l9 -2 l-2 9 Z" />
+        <path d="M45 33 l8 4 l3 -8 Z" />
+      </g>
+      <g fill="#b62e5e">
+        <path d="M64 44 l8 -5 l3 9 Z" />
+        <path d="M72 42 l9 -2 l-2 9 Z" />
+        <path d="M69 51 l8 4 l3 -8 Z" />
+      </g>
+      <circle cx="50" cy="29" r="1.6" fill="#f6bba4" />
+      <circle cx="74" cy="47" r="1.6" fill="#f6bba4" />
+    </g>
+  );
+}
+
+/** A simple terracotta pot with a green geranium and a few coral blooms. */
+function Pot() {
+  return (
+    <svg viewBox="0 0 80 96" className="w-full" aria-hidden>
+      <path d="M18 44 h44 l-6 40 h-32 Z" fill="#c2683f" />
+      <rect x="14" y="38" width="52" height="8" fill="#a8552f" />
+      <g fill="#3f6b46">
+        <circle cx="32" cy="30" r="12" />
+        <circle cx="48" cy="28" r="11" />
+        <circle cx="40" cy="18" r="10" />
+      </g>
+      <circle cx="34" cy="22" r="3" fill="#ff5734" />
+      <circle cx="46" cy="20" r="3" fill="#cf3a6f" />
+      <circle cx="40" cy="30" r="3" fill="#ff5734" />
+    </svg>
+  );
+}
 
 export function BotanicalFrame() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      {/* Back layer — slowest, large sage leaves bleeding top-left */}
+      {/* Back layer — bougainvillea bleeding from the top-left, slowest */}
       <svg
-        data-depth="0.2"
-        className="absolute -left-[12%] -top-[10%] w-[55vw] max-w-[640px]"
-        viewBox="0 0 200 200"
-        fill="none"
+        data-depth="0.25"
+        className="absolute -left-[6%] -top-[4%] w-[46vw] max-w-[440px]"
+        viewBox="0 0 120 90"
       >
-        <path d="M20 180 C40 120 80 80 160 40 C120 90 90 130 60 190 Z" fill="#c6d7d0" />
-        <path d="M30 175 C55 130 95 100 150 70" stroke="#7e813c" strokeWidth="2" />
+        <Sprig />
       </svg>
 
-      {/* Mid layer — olive stems bleeding bottom-right */}
+      {/* Mid layer — bougainvillea bleeding from the top-right */}
       <svg
-        data-depth="0.5"
-        className="absolute -right-[10%] bottom-[-8%] w-[48vw] max-w-[560px]"
-        viewBox="0 0 200 200"
-        fill="none"
+        data-depth="0.55"
+        className="absolute -right-[6%] -top-[2%] w-[42vw] max-w-[400px]"
+        viewBox="0 0 120 90"
       >
-        <path d="M190 20 C150 70 120 110 70 180 C110 120 140 80 180 30 Z" fill="#7e813c" />
-        <circle cx="60" cy="170" r="8" fill="#e5ba2b" />
-        <circle cx="95" cy="135" r="6" fill="#f6bba4" />
+        <Sprig flip />
       </svg>
 
-      {/* Front layer — fastest, small coral sprig top-right */}
-      <svg
-        data-depth="0.9"
-        className="absolute right-[6%] top-[8%] w-[24vw] max-w-[260px]"
-        viewBox="0 0 120 120"
-        fill="none"
-      >
-        <path d="M60 110 C60 70 70 40 100 20" stroke="#193c35" strokeWidth="2" />
-        <path d="M62 70 C50 60 40 62 30 50 C46 52 54 60 64 60 Z" fill="#ff5734" />
-        <path d="M66 90 C56 82 44 84 36 74 C50 76 58 82 68 80 Z" fill="#f6bba4" />
-      </svg>
+      {/* Front layer — terracotta pots flanking the arch base, fastest */}
+      <div data-depth="0.9" className="absolute bottom-[4%] left-0 right-0 flex justify-between px-[6vw]">
+        <div className="w-[18vw] max-w-[120px]">
+          <Pot />
+        </div>
+        <div className="w-[18vw] max-w-[120px]">
+          <Pot />
+        </div>
+      </div>
     </div>
   );
 }

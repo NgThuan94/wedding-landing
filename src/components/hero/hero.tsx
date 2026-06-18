@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { DateEyebrow } from "./date-eyebrow";
 import { HeroNameDisplay } from "./hero-name-display";
 import { BotanicalFrame } from "./botanical-frame";
+import { ArchWindow } from "./arch-window";
 import { useHeroEntrance } from "../../animation/use-hero-entrance";
 import { useParallaxLayers } from "../../animation/use-parallax-layers";
 
@@ -25,9 +26,11 @@ export function Hero({ revealed, reducedMotion }: Props) {
       className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden bg-blush-canvas px-6"
     >
       <BotanicalFrame />
-      <div className="relative z-10 flex flex-col items-center gap-8">
+      <div className="relative z-10 flex w-full flex-col items-center gap-6">
         <DateEyebrow ref={eyebrowRef} />
-        <HeroNameDisplay ref={nameRef} />
+        <ArchWindow>
+          <HeroNameDisplay ref={nameRef} />
+        </ArchWindow>
       </div>
     </section>
   );

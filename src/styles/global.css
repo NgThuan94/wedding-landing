@@ -14,6 +14,14 @@
   --color-deep-indigo: #092a49;
   --color-pure-white: #ffffff; /* cards ONLY, never CTA */
 
+  /* Mediterranean accents — derived from the watercolor intro (door → sea) */
+  --color-cobalt: #284a91; /* the arched door frame */
+  --color-sea: #5c87b5; /* sea water */
+  --color-sea-deep: #38618f; /* deeper sea band */
+  --color-sky-haze: #e3ecf0; /* pale sky through the arch */
+  --color-bougainvillea: #cf3a6f; /* magenta climbing flowers */
+  --color-terracotta: #c2683f; /* clay pots */
+
   --font-display: "Cormorant Garamond", serif;
   --font-body: "Inter", sans-serif;
 
