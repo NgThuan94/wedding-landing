@@ -12,8 +12,6 @@ export function IntroGate({ reducedMotion, onReveal }: Props) {
 
   if (gate.state === "done") return null;
 
-  const isPlaying = gate.state === "playing";
-
   return (
     <div
       ref={gate.gateRef}
@@ -21,29 +19,23 @@ export function IntroGate({ reducedMotion, onReveal }: Props) {
       role="dialog"
       aria-label="Mở thiệp cưới"
     >
-      {/* Poster still (instant) / video on play */}
-      {isPlaying ? (
-        <video
-          ref={gate.videoRef}
-          className="absolute inset-0 h-full w-full object-cover"
-          playsInline
-          preload="auto"
-          poster="/intro-poster.jpg"
-          onEnded={gate.handleEnded}
-          onError={gate.handleError}
-          onWaiting={gate.handleWaiting}
-          onPlaying={gate.handlePlaying}
-        >
-          <source src="/intro.webm" type="video/webm" />
-          <source src="/intro.mp4" type="video/mp4" />
-        </video>
-      ) : (
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url(/intro-poster.jpg)" }}
-          aria-hidden
-        />
-      )}
+      {/* Video is ALWAYS mounted so videoRef exists at tap time (the click
+          gesture must call play() synchronously for sound on mobile). The
+          poster attr shows a still frame until playback starts. */}
+      <video
+        ref={gate.videoRef}
+        className="absolute inset-0 h-full w-full object-cover"
+        playsInline
+        preload="auto"
+        poster="/intro-poster.jpg"
+        onEnded={gate.handleEnded}
+        onError={gate.handleError}
+        onWaiting={gate.handleWaiting}
+        onPlaying={gate.handlePlaying}
+      >
+        <source src="/intro.webm" type="video/webm" />
+        <source src="/intro.mp4" type="video/mp4" />
+      </video>
 
       {/* Idle prompt overlay */}
       {gate.state === "idle" && (

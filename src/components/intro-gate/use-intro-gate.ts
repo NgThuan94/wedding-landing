@@ -50,25 +50,21 @@ export function useIntroGate({ reducedMotion, onReveal }: Options) {
     });
   }, [reducedMotion, onReveal]);
 
-  const startPlay = useCallback(async () => {
-    setState("playing");
+  const startPlay = useCallback(() => {
     const video = videoRef.current;
+    setState("playing");
     if (!video) {
       reveal();
       return;
     }
-    try {
-      video.muted = false;
-      await video.play();
-    } catch {
-      // Autoplay-with-sound blocked → retry muted; if that fails, skip.
-      try {
-        video.muted = true;
-        await video.play();
-      } catch {
-        reveal();
-      }
-    }
+    // Call play() synchronously inside the click gesture so mobile allows
+    // playback WITH sound. The <video> is always mounted, so the ref exists here.
+    video.muted = false;
+    video.play().catch(() => {
+      // Autoplay-with-sound blocked → retry muted; if that also fails, skip.
+      video.muted = true;
+      video.play().catch(() => reveal());
+    });
   }, [reveal]);
 
   const handleEnded = useCallback(() => reveal(), [reveal]);
